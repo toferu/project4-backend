@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['localhost', 'gunnicornskateboards.herokuapp.com']
 INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
+    'project4_rest_api',
     'slammers_api',
     'django.contrib.admin',
     'django.contrib.auth',

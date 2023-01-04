@@ -1,1 +1,1 @@
-web: gunicorn project4_rest_api:slammers_api --preload
+web: gunicorn project4_rest_api.wsgi
