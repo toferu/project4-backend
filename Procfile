@@ -1,1 +1,1 @@
-web: gunicorn project4_rest_api.wsgi.application
+web: gunicorn project4_rest_api.wsgi
