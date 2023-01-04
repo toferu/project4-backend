@@ -1,1 +1,1 @@
-web: gunicorn slammers_api.wsgi
+web: gunicorn project4_rest_api.wsgi
