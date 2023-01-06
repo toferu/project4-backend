@@ -5,7 +5,7 @@ class Product(models.Model):
     name = models.CharField(max_length=64, null=True)
     image = models.URLField(max_length=250, null=True)
     price = models.FloatField(null=True)
-    description = models.CharField(max_length=1000, null=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
 
 class Customer(models.Model):
     name = models.CharField(max_length=24, null=True)
@@ -18,4 +18,4 @@ class Order(models.Model):
 
 class Video(models.Model):
     link = models.URLField(max_length=250, null=True)
-    description = models.CharField(max_length=88, null=True)
+    description = models.CharField(max_length=88, null=True, blank=True)
