@@ -41,7 +41,18 @@ class VideoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Video.objects.all().order_by('id')
     serializer_class = VideoSerializer
 
+### THIS CREATES A USER
+def create_user(request):
+    if request.method == 'POST':
 
+        newFormData = json.loads(request.body)
+        email = newFormData.get('email')
+        password = newFormData.get('password')
+        newCustomer = Customer(email=email, password=password)
+        newCustomer.save()
+        id = newCustomer.id
+        return JsonResponse({'id': id, 'email': email, 'password': password})
+        
 ### THIS IS THE FUNCTION THAT PERFORMS AUTH
 def check_login(request):
         #IF A GET REQUEST IS MADE, RETURN AN EMPTY {}
@@ -59,6 +70,6 @@ def check_login(request):
             if check_password(password, user.password): #check if passwords match
                 return JsonResponse({'id': user.id, 'email': user.email}) #if passwords match, return a user dict
             else: #passwords don't match so return empty dict
-                return JsonResponse({})
+                return JsonResponse({"Passwords do not match"})
         else: #if email doesn't exist in db, return empty dict
-            return JsonResponse({})
+            return JsonResponse({"User does not exist"})
