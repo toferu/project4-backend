@@ -15,7 +15,7 @@ class GoodsSerializer(serializers.ModelSerializer):
 class CustomerSerializer(serializers.ModelSerializer): # serializers.ModelSerializer just tells django to convert sql to JSON
     class Meta:
         model = Customer # tell django which model to use
-        fields = ('id', 'name', 'password',) # tell django which fields to include
+        fields = ('id', 'email', 'password',) # tell django which fields to include
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:

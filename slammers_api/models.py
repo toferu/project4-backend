@@ -14,8 +14,8 @@ class Goods(models.Model):
     description = models.CharField(max_length=1000, null=True, blank=True)
 
 class Customer(models.Model):
-    name = models.CharField(max_length=24, null=True)
-    password = models.CharField(max_length=32, null=True)
+    email = models.CharField(max_length=75, unique=True, null=True)
+    password = models.CharField(max_length=72, null=True)
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, null=True, on_delete= models.SET_NULL)
