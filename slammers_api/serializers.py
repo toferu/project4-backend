@@ -1,10 +1,15 @@
 from rest_framework import serializers 
-from .models import Product, Customer, Order, Video 
+from .models import Boards, Goods, Customer, Order, Video 
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class BoardsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Product
+        model = Boards
+        fields = ('id', 'name', 'image', 'price', 'description')
+
+class GoodsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Goods
         fields = ('id', 'name', 'image', 'price', 'description')
 
 class CustomerSerializer(serializers.ModelSerializer): # serializers.ModelSerializer just tells django to convert sql to JSON

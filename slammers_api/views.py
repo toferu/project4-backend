@@ -2,9 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import generics
-from .serializers import ProductSerializer, CustomerSerializer, OrderSerializer, VideoSerializer
-from .models import Product, Customer, Order, Video
+from .serializers import BoardsSerializer, GoodsSerializer, CustomerSerializer, OrderSerializer, VideoSerializer
+from .models import Boards, Goods, Customer, Order, Video
 
+<<<<<<< HEAD
 from django.contrib.auth.hashers import make_password, check_password
 from django.http import JsonResponse
 import json
@@ -12,10 +13,23 @@ import json
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
     serializer_class = ProductSerializer # tell django what serializer to use
+=======
+class BoardsList(generics.ListCreateAPIView):
+    queryset = Boards.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
+    serializer_class = BoardsSerializer # tell django what serializer to use
+>>>>>>> 29e795ce03d3e317e37ef833a827ce79d34fa993
 
-class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Product.objects.all().order_by('id')
-    serializer_class = ProductSerializer
+class BoardsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Boards.objects.all().order_by('id')
+    serializer_class = BoardsSerializer
+
+class GoodsList(generics.ListCreateAPIView):
+    queryset = Goods.objects.all().order_by('id') 
+    serializer_class = GoodsSerializer 
+
+class GoodsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Goods.objects.all().order_by('id')
+    serializer_class = GoodsSerializer
 
 class CustomerList(generics.ListCreateAPIView):
     queryset = Customer.objects.all().order_by('id')
