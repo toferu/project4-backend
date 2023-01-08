@@ -5,19 +5,14 @@ from rest_framework import generics
 from .serializers import BoardsSerializer, GoodsSerializer, CustomerSerializer, OrderSerializer, VideoSerializer
 from .models import Boards, Goods, Customer, Order, Video
 
-<<<<<<< HEAD
 from django.contrib.auth.hashers import make_password, check_password
 from django.http import JsonResponse
 import json
 
-class ProductList(generics.ListCreateAPIView):
-    queryset = Product.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
-    serializer_class = ProductSerializer # tell django what serializer to use
-=======
+
 class BoardsList(generics.ListCreateAPIView):
     queryset = Boards.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
     serializer_class = BoardsSerializer # tell django what serializer to use
->>>>>>> 29e795ce03d3e317e37ef833a827ce79d34fa993
 
 class BoardsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Boards.objects.all().order_by('id')
