@@ -52,7 +52,7 @@ def create_user(request):
         newCustomer.save()
         id = newCustomer.id
         return JsonResponse({'id': id, 'email': email, 'password': password})
-        
+
 ### THIS IS THE FUNCTION THAT PERFORMS AUTH
 def check_login(request):
         #IF A GET REQUEST IS MADE, RETURN AN EMPTY {}
@@ -73,3 +73,21 @@ def check_login(request):
                 return JsonResponse({"Passwords do not match"})
         else: #if email doesn't exist in db, return empty dict
             return JsonResponse({"User does not exist"})
+
+
+### EDIT CUSTOMER LOGIN
+def edit_login(request):
+    if request.method == 'PUT':
+        jsonRequest = json.loads(request.body)
+        new_email = jsonRequest.get('email')
+        new_pass = jsonRequest.get('password')
+        # Unsure if this will work but would be cool
+        check_login()
+
+        customer = Customer.objects.get(id=jsonRequest['id'])
+        customer.email = new_email
+        customer.password = new_pass
+        customer.save()
+        return JsonResponse({'id': customer.id, 'email': customer.email, 'password': customer.password})
+
+
