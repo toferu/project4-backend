@@ -52,12 +52,14 @@ class VideoDetail(generics.RetrieveUpdateDestroyAPIView):
 
 ### THIS CREATES A USER
 def create_user(request):
-    if request.method == 'POST':
+    if request.method=='GET':
+        return JsonResponse({})
+    if request.method=='POST':
 
         newFormData = json.loads(request.body)
         email = newFormData.get('email')
         password = newFormData.get('password')
-        make_password(password)
+        # make_password(password)
         newCustomer = Customer(email=email, password=password)
         newCustomer.save()
         id = newCustomer.id
@@ -87,12 +89,14 @@ def check_login(request):
 
 ### EDIT CUSTOMER LOGIN
 def edit_login(request):
+    if request.method=='GET':
+        return JsonResponse(request.body)
     if request.method == 'PUT':
         jsonRequest = json.loads(request.body)
         new_email = jsonRequest.get('email')
         new_pass = jsonRequest.get('password')
         # Unsure if this will work but would be cool
-        check_login()
+        # check_login()
 
         customer = Customer.objects.get(id=jsonRequest['id'])
         customer.email = new_email
