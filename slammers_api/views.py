@@ -74,23 +74,23 @@ def check_login(request):
         #CHECK IF A PUT REQUEST IS BEING MADE
     if request.method=='PUT':
 
-        jsonRequest = json.loads(request.body) #make the request JSON format
-        email = jsonRequest['email'] #get the email from the request
-        password = jsonRequest['password'] #get the password from the request
-        if Customer.objects.get(email=email): #see if email exists in db
-            user = Customer.objects.get(email=email)  #find user object with matching email
-            if check_password(password, user.password): #check if passwords match
-                return JsonResponse({'id': user.id, 'email': user.email}) #if passwords match, return a user dict
-            else: #passwords don't match so return empty dict
-                return JsonResponse({"Passwords do not match"})
-        else: #if email doesn't exist in db, return empty dict
-            return JsonResponse({"User does not exist"})
+        jsonRequest = json.loads(request.body) 
+        email = jsonRequest['email'] 
+        password = jsonRequest['password'] 
+        if Customer.objects.get(email=email): 
+            user = Customer.objects.get(email=email)  
+            if check_password(password, user.password):
+                return JsonResponse({'id': user.id, 'email': user.email}) 
+            else: 
+                return JsonResponse({"Match Error": "Passwords do not match"})
+        else: 
+            return JsonResponse({"Error": "User does not exist"})
 
 
 ### EDIT CUSTOMER LOGIN
 def edit_login(request):
     if request.method=='GET':
-        return JsonResponse(request.body)
+        return request.body
     if request.method == 'PUT':
         jsonRequest = json.loads(request.body)
         new_email = jsonRequest.get('email')
