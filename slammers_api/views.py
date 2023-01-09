@@ -57,6 +57,7 @@ def create_user(request):
         newFormData = json.loads(request.body)
         email = newFormData.get('email')
         password = newFormData.get('password')
+        make_password(password)
         newCustomer = Customer(email=email, password=password)
         newCustomer.save()
         id = newCustomer.id
