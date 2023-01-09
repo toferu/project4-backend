@@ -5,7 +5,7 @@ from rest_framework import generics
 from .serializers import BoardsSerializer, GoodsSerializer, CustomerSerializer, OrderSerializer, VideoSerializer
 from .models import Boards, Goods, Customer, Order, Video
 
-from django.contrib.auth.hashers import make_password, check_password
+# from django.contrib.auth.hashers import make_password, check_password
 from django.http import JsonResponse
 import json
 
@@ -79,7 +79,8 @@ def check_login(request):
         password = jsonRequest['password'] 
         if Customer.objects.get(email=email): 
             user = Customer.objects.get(email=email)  
-            if check_password(password, user.password):
+            # if check_password(password, user.password): can't get this to work
+            if password == user.password:
                 return JsonResponse({'id': user.id, 'email': user.email}) 
             else: 
                 return JsonResponse({"Match Error": "Passwords do not match"})
