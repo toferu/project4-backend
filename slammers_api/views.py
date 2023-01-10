@@ -108,11 +108,11 @@ def edit_login(request):
 
 ### DELETE BOARD
 
-def delete_board(request):
-    if request.method=='DELETE':
-        board = json.loads(request.body)
-        board_id = board.get('id')
-        board_delete = Boards.objects.get(id = board_id)
+# def delete_board(request):
+#     if request.method=='DELETE':
+#         board = json.loads(request.body)
+#         board_id = board.get('id')
+#         board_delete = Boards.objects.get(id = board_id)
 
-        board_delete.delete()
-        return JsonResponse({})
+#         board_delete.delete()
+#         return JsonResponse({})
