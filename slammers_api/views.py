@@ -106,3 +106,13 @@ def edit_login(request):
         return JsonResponse({'id': customer.id, 'email': customer.email, 'password': customer.password})
 
 
+### DELETE BOARD
+
+def delete_board(request):
+    if request.method=='DELETE':
+        board = json.loads(request.body)
+        board_id = board.get('id')
+        board_delete = Boards.objects.get(id = board_id)
+
+        board_delete.delete()
+        return JsonResponse({})
